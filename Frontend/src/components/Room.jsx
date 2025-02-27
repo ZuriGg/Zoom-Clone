@@ -29,9 +29,9 @@ const Room = () => {
             });
 
         const peerInstance = new Peer(undefined, {
-            host: "localhost", // Dirección del servidor PeerJS
-            port: 3001, // Puerto donde está corriendo el servidor PeerJS
-            path: "/peerjs", // Ruta que coincide con el servidor PeerJS
+            host: "a45c-95-18-11-25.ngrok-free.app", // Dirección de Ngrok
+            port: 443, // Puerto para HTTPS
+            secure: true, // Usa HTTPS
         });
 
         // Establecer el ID del peer

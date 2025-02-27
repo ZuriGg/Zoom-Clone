@@ -1,21 +1,20 @@
-// Importar las dependencias necesarias
 const express = require("express");
 const http = require("http");
 const { ExpressPeerServer } = require("peer");
+const cors = require("cors"); // Agregar el middleware CORS
 
-// Crear una instancia de Express
 const app = express();
-
-// Crear el servidor HTTP
 const server = http.createServer(app);
 
-// Configurar el servidor PeerJS en el servidor HTTP
+// Permitir solicitudes desde todos los orígenes (o desde un dominio específico de Ngrok)
+app.use(cors({ origin: "*" })); // Aquí puedes especificar tu dominio de Ngrok, si prefieres
+
+// Configurar el servidor PeerJS en la ruta "/peerjs"
 const peerServer = ExpressPeerServer(server, {
-    // No es necesario especificar un path si no hay un conflicto
+    path: "/peerjs", // Ruta para PeerJS
 });
 
-// Usar el servidor PeerJS en la ruta definida
-app.use("/peerjs", peerServer);
+app.use("/peerjs", peerServer); // Usar el servidor PeerJS en la ruta "/peerjs"
 
 // Iniciar el servidor en el puerto 3001
 server.listen(3001, () => {
